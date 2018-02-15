@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 
 public class MainApiVerticle extends AbstractVerticle {
 
-    final Router router = Router.router(vertx);
+    Router router;
 
     @Override
     public void start(Future<Void> startFuture) throws Exception {
-
+        router = Router.router(vertx);
         router.route().handler(BodyHandler.create());
         router.route().handler(ctx -> {
            JsonArray uploadedFiles = new JsonArray(
